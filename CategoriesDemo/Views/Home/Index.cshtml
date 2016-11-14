@@ -1,0 +1,35 @@
+﻿@model List<CategoriesDemo.Models.CustDetail>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+        <ul>
+
+            @foreach (var group in Model.Select(m => m.gender).Distinct())
+            {
+                <li>
+                    @group
+                </li>
+
+                foreach (var item in Model.Where(m => m.gender == group && m.pets != null))
+                {
+                    <ul>
+                        @foreach (var item1 in item.pets.OrderBy(m => m.name))
+                        {
+                            <li>
+                                @item1.name
+                            </li>
+                        }
+
+                    </ul>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
